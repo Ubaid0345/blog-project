@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 import NavBar from './Component/NavBar.js';
 import Header from './Component/Header.js';
@@ -13,46 +14,54 @@ import About from './Component/About.js';
 import Contact from './Component/Contact.js';
 import Post from './Component/Post.js';
 
-function App() {
-  return (
-    // <>
-    //   <NavBar />
-    //   <Header />
-    //   <About />
-    //   <Contact />
-    //   <Home />
-    //   <Footer />
-    // </>
+class App extends Component {
 
-    <>
-      <Router>
-        <NavBar />
-        <Switch>
-          <Route path='/about'>
-            <Header title="About Us" img="about-bg.jpg" />
-            <About />
-          </Route>
-          <Route path='/Post'>
-            <Header title="Man must explore, and this is exploration at its greatest " img="post-bg.jpg" />
-            <Home />
-          </Route>
-          <Route path='/Contact'>
-            <Header title="Man must explore, and this is exploration at its greatest " img="contact-bg.jpg" />
-            <Contact />
-          </Route>
-          <Route path='/'>
-            <Header title="Wscube Tech" img="home-bg.jpg" />
-            <Post />
-          </Route>
-          <Route path='*'>
-            <Header title="404 pafe not found" img="404-bg.jpg" />
-          </Route>
-        </Switch>
-        <Footer />
-      </Router>
-    </>
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       auth: false,
+    }
+  }
+  
 
-  );
+  authHandler = () =>{
+    this.setState({auth: !this.state.auth})
+    // alert('hello');
+  };
+
+  render() {
+    return (
+      <>
+        <Router>
+          <NavBar login={this.loginHandler} status={this.state.auth} />
+          <Switch>
+            <Route path='/Contact'>
+              <Header title="Man must explore, and this is exploration at its greatest " img="contact-bg.jpg" />
+              <Contact />
+            </Route>
+            <Route path='/about'>
+              <Header title="About Us" img="about-bg.jpg" />
+              <About />
+            </Route>
+            <Route path='/Post'>
+              {this.state.auth === false ? (<Redirect to="/" />) : (<> <Header title="Man must explore, and this is exploration at its greatest " img="post-bg.jpg" />
+              <Post /> </>)}
+            </Route>
+            <Route path='/'>
+              <Header title="Wscube Tech" img="home-bg.jpg" />
+              <Home />
+            </Route>
+            <Route path='*'>
+              <Header title="404 pafe not found" img="404-bg.jpg" />
+            </Route>
+          </Switch>
+          <Footer />
+        </Router>
+      </>
+
+    );
+  }
 }
 
 export default App;

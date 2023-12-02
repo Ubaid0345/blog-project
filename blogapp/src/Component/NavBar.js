@@ -1,7 +1,7 @@
 import React from 'react';
-import {Lnik} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-export default function NavBar() {
+export default function NavBar(props) {
   return (
     <nav className='navbar navbar-expand-lg navbar-light fixed-top' id='mainNav'>
         <div className='container'>
@@ -32,6 +32,9 @@ export default function NavBar() {
                         <link className='nav-link' to='/contact'>
                             Contact
                         </link>
+                    </li>
+                    <li className='nav-item'>
+                        <Link onCLick={props.login}>{props.status ? "Logout" : "Login"} </Link>
                     </li>
                 </ul>
             </div>
