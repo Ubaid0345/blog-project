@@ -1,12 +1,13 @@
-import React from 'react'
+import React from 'react';
+import {Lnik} from 'react-router-dom';
 
 export default function NavBar() {
   return (
     <nav className='navbar navbar-expand-lg navbar-light fixed-top' id='mainNav'>
         <div className='container'>
-            <a className='navbar-brand'>
+            <link className='navbar-brand' to="/">
                 Start Studying
-            </a>
+            </link>
             <button className='navbar-toggler navbar-toogler-right' type='button' data-toggle='collapse' data-target="#navbarResponsive" aria-controls='navbarRsposive' aria-expanded='false' aria-label='Toggle navigation'>
                 Menu
                 <i className='fas fa-bars'></i>
@@ -14,23 +15,23 @@ export default function NavBar() {
             <div className='collapse navbar-collapse' id='navbarResponsive'>
                 <ul className='navbar-nav ml-auto'>
                     <li className='nav-item'>
-                        <a className='nav-link' href='index.html'>
+                        <link className='nav-link' to='/'>
                             Home
-                        </a>
+                        </link>
                     </li>
                     <li className='nav-item'>
-                        <a className='nav-link' href='about.html'>
+                        <link className='nav-link' to='/about'>
                             About
-                        </a>
+                        </link>
                     </li>
                     <li className='nav-item'>
-                        <a className='nav-link' href='post.html'>
+                        <link className='nav-link' to='/post'>
                             Sample Post
-                        </a>
+                        </link>
                     </li><li className='nav-item'>
-                        <a className='nav-link' href='contact.html'>
+                        <link className='nav-link' to='/contact'>
                             Contact
-                        </a>
+                        </link>
                     </li>
                 </ul>
             </div>
